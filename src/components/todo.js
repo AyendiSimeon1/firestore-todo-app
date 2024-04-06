@@ -1,16 +1,22 @@
-import React from 'react';
-
-const Todo = ({ todo, toggleCompleted }) => {
-    const handleToggle = () => {
-        toggleCompleted(todo.id);
-    };
-
-    return (
-        <li className={todo.completed ? 'completed' : ''}>
-            <input type="checkbox" checked={todo.completed} onChange={handleToggle} />
-            {todo.text}
-        </li>
-    );
+import { List, ListItem, ListItemAvatar, ListItemText } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { db } from "../firebase.js";
+import { doc, deleteDoc } from "firebase/firestore";
+const Todo = ({ arr }) => {
+  return (
+    <List className="todo__list">
+      <ListItem>
+        <ListItemAvatar />
+        <ListItemText primary={arr.item.todo} secondary={arr.item.todo} />
+      </ListItem>
+      <DeleteIcon
+        fontSize="large"
+        style={{ opacity: 0.7 }}
+        onClick={() => {
+          deleteDoc(doc(db, "todos", arr.id));
+        }}
+      />
+    </List>
+  );
 };
-
-export default Todo
+export default Todo;

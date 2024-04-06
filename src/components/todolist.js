@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from './firebaseConfig';
-import Todo from './Todo';
+import Todo from './todo';
 
 const TodoList = () => {
     const [todos, setTodos] = useState([]);

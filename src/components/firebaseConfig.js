@@ -16,4 +16,4 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-export default firebaseConfig;
+export default db;

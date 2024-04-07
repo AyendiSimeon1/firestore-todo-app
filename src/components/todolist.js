@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Todo from './components/Todo';
-import { db } from './firebase.js';
+import Todo from './todo';
+import db from './firebaseConfig.js';
 import { collection, query, orderBy, onSnapshot, addDoc, serverTimestamp } from 'firebase/firestore';
-import './App.css';
+
 const q = query(collection(db, 'todos'), orderBy('timestamp', 'desc'));
 function App() {
     const [todos, setTodos] = useState([]);
@@ -29,7 +29,7 @@ function App() {
             <form>
                 <input  label="Make Todo"  style={{ margin: "0px 5px" }} size="small" value={input}
                     onChange={e => setInput(e.target.value)} />
-                <Button color="primary" onClick={addTodo}  >Add Todo</Button>
+                <button color="primary" onClick={addTodo}  >Add Todo</button>
             </form>
             <ul>
                 {todos.map(item => <Todo key={item.id} arr={item} />)}
